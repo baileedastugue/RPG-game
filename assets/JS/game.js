@@ -2,34 +2,33 @@ $(document).ready(function(){
     
     // var dino1 = document.getElementById("dinosaur1");
 
-    dino1 = {
+    $("#dinosaur1").data({
         name: "da dino",
         HP: 200,
         attack: 8,
-        counterAttack: 80
-    };
+        counterAttack: 80}
+    );
 
-
-    var dino2 = {
+    $("#dinosaur2").data( {
         name: "big guy",
         HP: 200,
         attack: 9,
         counterAttack: 25
-    };
+    });
     
-    var dino3 = {
+    $("#dinosaur3").data( {
         name: "lil cute one",
         HP: 100,
         attack: 9,
         counterAttack: 16 
-    };
+    });
     
-    var dino4 = {
+    $("#dinosaur4").data( {
         name: "just doing his best",
         HP: 300,
         attack: 2,
         counterAttack: 14 
-    };
+    });
 
     var pickFighter = true;
     var pickEnemy = false;
@@ -37,58 +36,20 @@ $(document).ready(function(){
     var currentFighter;
     var currentEnemy;
 
+    // console.log($("#dinosaur1").data());
 
-    $("#dinosaur1").on("click", function () {
+    $(".dino").on("click", function () {
         if (pickFighter) {
-            currentFighter = dino1;
+            currentFighter = $(this).data();
             console.log("fighter: " + currentFighter.name);
         }
         if (pickEnemy) {
-            currentEnemy = dino1;
+            currentEnemy = $(this).data();
             console.log("enemy: " + currentEnemy.name);
         }
     });
 
-    $("#dinosaur2").on("click", function () {
-        if (pickFighter) {
-            currentFighter = dino2;
-            console.log("fighter: " + currentFighter.name);
-        }
-        if (pickEnemy) {
-            currentEnemy = dino2;
-            console.log("enemy: " + currentEnemy.name);
-        }
-    });
-
-    $("#dinosaur3").on("click", function () {
-        if (pickFighter) {
-            currentFighter = dino3;
-            console.log("fighter: " + currentFighter.name);
-        }
-        if (pickEnemy) {
-            currentEnemy = dino3;
-            console.log("enemy: " + currentEnemy.name);
-        }
-    });
-
-    $("#dinosaur4").on("click", function () {
-        if (pickFighter) {
-            currentFighter = dino4;
-            console.log("fighter: " + currentFighter.name);
-        }
-        if (pickEnemy) {
-            currentEnemy = dino4;
-            console.log("enemy: " + currentEnemy.name);
-        }
-            
-    });
-
-    // $(".dino").on("click", function () {
-    //     if (pickEnemy) {
-
-    //     }
-    // });
-
+    // prompts user to pick their fighter and their enemy dino
     $(".dino").on("click", function (){
         if (pickFighter) {
             pickFighter = false;
@@ -98,6 +59,7 @@ $(document).ready(function(){
         else if (pickEnemy) {
             pickEnemy = false;
             gameStarted = true;
+            $("#dino-pick").hide();
         }
     })
 
