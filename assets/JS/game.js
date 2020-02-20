@@ -101,7 +101,10 @@ $(document).ready(function(){
     })
 
     $("#attack").on("click", function () {
-
+        if (gameStarted) {
+            currentEnemy.HP = currentEnemy.HP-currentFighter.attack;
+            console.log(currentEnemy.HP);
+        }
     });
 
 });
