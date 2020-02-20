@@ -4,8 +4,8 @@ $(document).ready(function(){
 
     dino1 = {
         name: "da dino",
-        HP: 500,
-        attack: 10,
+        HP: 200,
+        attack: 8,
         counterAttack: 80
     };
 
@@ -13,7 +13,7 @@ $(document).ready(function(){
     var dino2 = {
         name: "big guy",
         HP: 200,
-        attack: 2,
+        attack: 9,
         counterAttack: 25
     };
     
@@ -27,7 +27,7 @@ $(document).ready(function(){
     var dino4 = {
         name: "just doing his best",
         HP: 300,
-        attack: 15,
+        attack: 2,
         counterAttack: 14 
     };
 
@@ -93,6 +93,7 @@ $(document).ready(function(){
         if (pickFighter) {
             pickFighter = false;
             pickEnemy = true;
+            $("#dino-pick").text("Choose your opponent:");
         }
         else if (pickEnemy) {
             pickEnemy = false;
@@ -109,8 +110,11 @@ $(document).ready(function(){
             console.log("Fighter's HP: " + currentFighter.HP);
         }
         if (currentEnemy.HP <= 0) {
-            console.log("Choose another fighter");
+            console.log("Choose another opponent");
             pickEnemy = true;
+        }
+        if (currentFighter.HP <= 0) {
+            console.log("Game over");
         }
     });
 
