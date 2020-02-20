@@ -101,9 +101,16 @@ $(document).ready(function(){
     })
 
     $("#attack").on("click", function () {
-        if (gameStarted) {
+        if (gameStarted && currentEnemy.HP > 0 && currentFighter.HP > 0) {
             currentEnemy.HP = currentEnemy.HP-currentFighter.attack;
-            console.log(currentEnemy.HP);
+            currentFighter.attack = currentFighter.attack *2;
+            console.log("Enemy's HP: " + currentEnemy.HP);
+            currentFighter.HP = currentFighter.HP-currentEnemy.counterAttack;
+            console.log("Fighter's HP: " + currentFighter.HP);
+        }
+        if (currentEnemy.HP <= 0) {
+            console.log("Choose another fighter");
+            pickEnemy = true;
         }
     });
 
