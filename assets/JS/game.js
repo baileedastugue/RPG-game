@@ -36,7 +36,13 @@ $(document).ready(function(){
     var currentFighter;
     var currentEnemy;
 
-    // console.log($("#dinosaur1").data());
+    $("#game-play").hide();
+
+    // $(".stats#dinosaur1").text("Name: " + $("#dinosaur1").data().name +
+    //                             "HP: " + $("#dinosaur1").data().HP +
+    //                             "attack: " + $("#dinosaur1").data().attack);
+    // $(".stats#dinosaur2").text($("#dinosaur2").data().name);
+    //  $(".stats").text($("#dinosaur1").data().name);
 
     $(".dino").on("click", function () {
         if (pickFighter) {
@@ -49,6 +55,8 @@ $(document).ready(function(){
         }
     });
 
+    // if not current fighter / enemy --> hide
+
     // prompts user to pick their fighter and their enemy dino
     $(".dino").on("click", function (){
         if (pickFighter) {
@@ -60,8 +68,9 @@ $(document).ready(function(){
             pickEnemy = false;
             gameStarted = true;
             $("#dino-pick").hide();
+            $("#game-play").show();
         }
-    })
+    });
 
     $("#attack").on("click", function () {
         if (gameStarted && currentEnemy.HP > 0 && currentFighter.HP > 0) {
