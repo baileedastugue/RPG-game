@@ -43,7 +43,7 @@ $(document).ready(function(){
             currentFighter = dino1;
             console.log("fighter: " + currentFighter.name);
         }
-        else {
+        if (pickEnemy) {
             currentEnemy = dino1;
             console.log("enemy: " + currentEnemy.name);
         }
@@ -54,7 +54,7 @@ $(document).ready(function(){
             currentFighter = dino2;
             console.log("fighter: " + currentFighter.name);
         }
-        else {
+        if (pickEnemy) {
             currentEnemy = dino2;
             console.log("enemy: " + currentEnemy.name);
         }
@@ -65,7 +65,7 @@ $(document).ready(function(){
             currentFighter = dino3;
             console.log("fighter: " + currentFighter.name);
         }
-        else {
+        if (pickEnemy) {
             currentEnemy = dino3;
             console.log("enemy: " + currentEnemy.name);
         }
@@ -76,24 +76,27 @@ $(document).ready(function(){
             currentFighter = dino4;
             console.log("fighter: " + currentFighter.name);
         }
-        else {
+        if (pickEnemy) {
             currentEnemy = dino4;
             console.log("enemy: " + currentEnemy.name);
         }
             
     });
 
-    $(".dino").on("click", function () {
-        if (pickEnemy) {
+    // $(".dino").on("click", function () {
+    //     if (pickEnemy) {
 
-        }
-    });
+    //     }
+    // });
 
     $(".dino").on("click", function (){
-        if (!gameStarted && !pickEnemy) {
+        if (pickFighter) {
             pickFighter = false;
             pickEnemy = true;
-            console.log("egg");
+        }
+        else if (pickEnemy) {
+            pickEnemy = false;
+            gameStarted = true;
         }
     })
 
