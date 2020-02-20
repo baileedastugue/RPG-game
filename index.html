@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/base.css">
@@ -11,31 +12,53 @@
     <title>Dino Fight</title>
 </head>
 <body>
-    Choose your fighter:<br>
-    <img src="assets/images/dino1.png"><br>
-    <button type="button" class="btn btn-dark">Dino1</button>
-    <br>
-    <img src="assets/images/dino2.png"><br>
-    <button type="button" class="btn btn-primary">Dino2</button>
-    <br>
-    <img src="assets/images/dino3.png"><br>
-    <button type="button" class="btn btn-success">Dino2</button>
-    <br>
-    <img src="assets/images/dino4.png"><br>
-    <button type="button" class="btn btn-warning">Dino2</button>
-    <br>
-    Choose your first opponent:
-    <br>
-    Defeated dinos:
-    <br>
-    Dinos left to fight:
-    <br>
-    Your Dino Stats:<br>
-    HP:<br>
-    Attack power:<br>
-    <br><br>
-    Enemy Dino Stats:<br>
-    HP:<br>
-    Counter attack power:<br>
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <div class="container">
+                    <div class="row">
+                        Choose your fighter:<br>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="assets/images/dino1.png" class="dino" id="dinosaur1"><br>
+                            <!-- <button type="button" class="btn btn-dark dino">I choose you!</button> -->
+                        </div>
+                        <div class="col-3">
+                            <img src="assets/images/dino2.png" class="dino" id="dinosaur2"><br>
+                            <!-- <button type="button" class="btn btn-primary dino">I choose you!</button> -->
+                        </div>
+                        <div class="col-3">
+                            <img src="assets/images/dino3.png" class="dino" id="dinosaur3"><br>
+                            <!-- <button type="button" class="btn btn-success dino">I choose you!</button> -->
+                        </div>
+                        <div class="col-3">
+                            <img src="assets/images/dino4.png" class="dino" id="dinosaur4"><br>
+                            <!-- <button type="button" class="btn btn-warning dino">I choose you!</button> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-warning" id="attack">attack!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                Choose your first opponent:
+                <br>
+                Defeated dinos:
+                <br>
+                Dinos left to fight:
+                <br>
+                Your Dino Stats:<br>
+                HP:<br>
+                Attack power:<br>
+                <br><br>
+                Enemy Dino Stats:<br>
+                HP:<br>
+                Counter attack power:<br>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="assets/JS/game.js"></script>
 </html>
