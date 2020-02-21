@@ -84,7 +84,8 @@ $(document).ready(function(){
             $("#dino-pick").hide();
             $("#game-play").show();
             $("#attack").show();
-            ($(".opponent:not(#fightingAgainst)")).hide();
+            // $(".opponent:not(#fightingAgainst)").hide();
+            $("#dinos-left").append($("img:not(#fightingAgainst, #fighter)"));
         }
     });
 
