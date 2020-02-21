@@ -47,13 +47,16 @@ $(document).ready(function(){
         if (pickFighter) {
             currentFighter = $(this).data();
             $(this).attr("id", "fighter");
-            // $(this).attr("class", "current");
+            $("#fighter-HP").html("HP: " + currentFighter.HP);
+            $("#fighter-AP").html("Attack Power: " + currentFighter.attack);
             console.log("fighter: " + currentFighter.name);
         }
         if (pickEnemy) {
             currentEnemy = $(this).data();
             $(this).attr("id", "fightingAgainst");
             console.log("enemy: " + currentEnemy.name);
+            $("#opponent-HP").html("HP: " + currentEnemy.HP);
+            $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
         }
         if ($("#fighter")) {
             $("#fighter").css("border", "2px solid green");
@@ -63,10 +66,6 @@ $(document).ready(function(){
             $(".opponent").css("border", "2px solid red");
         }
     });
-
-
-
-    // if not current fighter / enemy --> hide
 
     // prompts user to pick their fighter and their enemy dino
     $(".dino").on("click", function (){
@@ -84,7 +83,6 @@ $(document).ready(function(){
             $("#dino-pick").hide();
             $("#game-play").show();
             $("#attack").show();
-            // $(".opponent:not(#fightingAgainst)").hide();
             $("#dinos-left").append($("img:not(#fightingAgainst, #fighter)"));
         }
     });
@@ -93,9 +91,11 @@ $(document).ready(function(){
         if (gameStarted && currentEnemy.HP > 0 && currentFighter.HP > 0) {
             currentEnemy.HP = currentEnemy.HP-currentFighter.attack;
             currentFighter.attack = currentFighter.attack *2;
-            console.log("Enemy's HP: " + currentEnemy.HP);
+            $("#opponent-HP").html("HP: " + currentEnemy.HP);
+            $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
             currentFighter.HP = currentFighter.HP-currentEnemy.counterAttack;
-            console.log("Fighter's HP: " + currentFighter.HP);
+            $("#fighter-HP").html("HP: " + currentFighter.HP);
+            $("#fighter-AP").html("Attack Power: " + currentFighter.attack);
         }
         if (currentEnemy.HP <= 0) {
             console.log("Choose another opponent");
