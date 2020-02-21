@@ -13,54 +13,48 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="container">
-                    <div class="row">
-                        <div id="dino-pick">Choose your fighter:</div><br>
-                    </div>
-                    <div class="row">
-                        
-                            <img src="assets/images/dino1.png" class="dino" id="dinosaur1"><br>
-                            <!-- Stats: <div class="stats" id="dinosaur1"></div> -->
+        <div class="row">          
+            <div id="dino-pick">Choose your fighter:</div><br>
+        </div>
 
-                            <img src="assets/images/dino2.png" class="dino" id="dinosaur2"><br>
-                            <!-- Stats: <div class="stats" id="dinosaur2"></div> -->
-
-                            <img src="assets/images/dino3.png" class="dino" id="dinosaur3"><br>
-                            <!-- Stats: <div class="stats" id="dinosaur3"></div> -->
-                
-                            <img src="assets/images/dino4.png" class="dino" id="dinosaur4"><br>
-                        
-                    </div>
-
-                    <div id="your-dino">
-                        <div id="current-fighter">
-                            Your Dino Stats:<br>
-                            <span id="fighter-HP">HP:</span><br>
-                            <span id="fighter-AP">Attack Power:</span>
-                        </div>
-                    </div>
-                    <div id="your-opponent">
-                        <div id="current-opponent">
-                            Enemy Dino Stats:<br>
-                            <span id="opponent-HP">HP:</span><br>
-                            <span id="opponent-AP">Counter-Attack Power:</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <button type="button" class="btn btn-warning" id="attack">attack!</button>
-                    </div>
-                </div>
-            </div>
-            <div id="game-play">
-                <div id="defeated-dinos">Defeated dinos:</div>
-                <br>
-                <div id="dinos-left">Dinos left to fight:</div>                
-            </div>
+        <div class="row">            
+            <img src="assets/images/dino1.png" class="dino" id="dinosaur1"><br>
+            <img src="assets/images/dino2.png" class="dino" id="dinosaur2"><br>
+            <img src="assets/images/dino3.png" class="dino" id="dinosaur3"><br>
+            <img src="assets/images/dino4.png" class="dino" id="dinosaur4"><br>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6" id="your-dino">
+                <div id="current-fighter">
+                    Your Dino Stats:<br>
+                        <span id="fighter-HP">HP:</span><br>
+                        <span id="fighter-AP">Attack Power:</span>
+                </div>
+            </div>
+            <div class="col-6" id="your-opponent">
+                <div id="current-opponent">
+                    Enemy Dino Stats:<br>
+                        <span id="opponent-HP">HP:</span><br>
+                        <span id="opponent-AP">Counter-Attack Power:</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <button type="button" class="btn btn-warning" id="attack">attack!</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row" id="game-play">
+            <div id="defeated-dinos">Defeated dinos:</div><br>
+            <br>
+            <div id="dinos-left">Dinos left to fight:</div>                
+        </div>
+    </div>
+    
 </body>
 <script src="assets/JS/game.js"></script>
 </html>
