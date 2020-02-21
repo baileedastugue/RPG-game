@@ -47,12 +47,12 @@ $(document).ready(function(){
         if (pickFighter) {
             currentFighter = $(this).data();
             $(this).attr("id", "fighter");
-            $(this).attr("class", "current");
+            // $(this).attr("class", "current");
             console.log("fighter: " + currentFighter.name);
         }
         if (pickEnemy) {
             currentEnemy = $(this).data();
-            $(this).attr("class", "current");
+            $(this).attr("id", "fightingAgainst");
             console.log("enemy: " + currentEnemy.name);
         }
         if ($("#fighter")) {
@@ -60,19 +60,11 @@ $(document).ready(function(){
         }
         if ($("img:not(#fighter)")) {
             $("img:not(#fighter)").attr("class", "opponent");
-            $("img:not(#fighter)").css("border", "2px solid red");
+            $(".opponent").css("border", "2px solid red");
         }
-        // }
-        // if ($(".opponent")){
-        //     $(".opponent").css("border", "2px solid red");
-        // }
     });
 
-    if (gameStarted) {
-        $("#dino-pick").hide();
-        $("#game-play").show();
-        $("#attack").show();
-    }
+
 
     // if not current fighter / enemy --> hide
 
@@ -86,6 +78,13 @@ $(document).ready(function(){
         else if (pickEnemy) {
             pickEnemy = false;
             gameStarted = true;
+        }
+        if (gameStarted) {
+            console.log("game started");
+            $("#dino-pick").hide();
+            $("#game-play").show();
+            $("#attack").show();
+            ($(".opponent:not(#fightingAgainst)")).hide();
         }
     });
 
