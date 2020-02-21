@@ -54,7 +54,6 @@ $(document).ready(function(){
         if (pickEnemy) {
             currentEnemy = $(this).data();
             $(this).attr("id", "fightingAgainst");
-            console.log("enemy: " + currentEnemy.name);
             $("#opponent-HP").html("HP: " + currentEnemy.HP);
             $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
         }
@@ -98,6 +97,8 @@ $(document).ready(function(){
             $("#fighter-AP").html("Attack Power: " + currentFighter.attack);
         }
         if (currentEnemy.HP <= 0) {
+            $("#fightingAgainst").removeAttr("id", "fightingAgainst").addClass("defeated");
+            $("#defeated-dinos").append($(".defeated"));
             console.log("Choose another opponent");
             pickEnemy = true;
         }
