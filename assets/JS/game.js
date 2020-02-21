@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     $("#dinosaur2").data( {
         name: "big guy",
-        HP: 200,
+        HP: 400,
         attack: 9,
         counterAttack: 25
     });
@@ -36,24 +36,43 @@ $(document).ready(function(){
     var currentFighter;
     var currentEnemy;
 
-    $("#game-play").hide();
-
-    // $(".stats#dinosaur1").text("Name: " + $("#dinosaur1").data().name +
-    //                             "HP: " + $("#dinosaur1").data().HP +
-    //                             "attack: " + $("#dinosaur1").data().attack);
-    // $(".stats#dinosaur2").text($("#dinosaur2").data().name);
-    //  $(".stats").text($("#dinosaur1").data().name);
+    if (!gameStarted){
+        $("#game-play").hide();
+        $("#attack").hide();
+    }
+    // $(".stats#dinosaur1").html("Name: " + $("#dinosaur1").data().name);
+    
 
     $(".dino").on("click", function () {
         if (pickFighter) {
             currentFighter = $(this).data();
+            $(this).attr("id", "fighter");
+            $(this).attr("class", "current");
             console.log("fighter: " + currentFighter.name);
         }
         if (pickEnemy) {
             currentEnemy = $(this).data();
+            $(this).attr("class", "current");
             console.log("enemy: " + currentEnemy.name);
         }
+        if ($("#fighter")) {
+            $("#fighter").css("border", "2px solid green");
+        }
+        if ($("img:not(#fighter)")) {
+            $("img:not(#fighter)").attr("class", "opponent");
+            $("img:not(#fighter)").css("border", "2px solid red");
+        }
+        // }
+        // if ($(".opponent")){
+        //     $(".opponent").css("border", "2px solid red");
+        // }
     });
+
+    if (gameStarted) {
+        $("#dino-pick").hide();
+        $("#game-play").show();
+        $("#attack").show();
+    }
 
     // if not current fighter / enemy --> hide
 
@@ -67,8 +86,6 @@ $(document).ready(function(){
         else if (pickEnemy) {
             pickEnemy = false;
             gameStarted = true;
-            $("#dino-pick").hide();
-            $("#game-play").show();
         }
     });
 
@@ -90,3 +107,9 @@ $(document).ready(function(){
     });
 
 });
+
+// when fighter + opponent have been selected, move remaining two dino pictures into #dinos-left
+    // when fighter is selected --> add #selected #fighter
+    // when opponent is selected --> add #selected #fighter
+// when picking dinosaurs, hide attack button
+// 
