@@ -1,31 +1,40 @@
+// to-do:
+// display HP of each dino at the beginning of the game
+// caption by how much HP changed
+// add a reset button
+// add rules
+// change HP + attacks
+// add styles
+// add animation + sound
+
 $(document).ready(function(){
     // create dinosaur variables, assign this data to images
     $("#dinosaur1").data( {
         name: "da dino",
-        HP: 200,
-        attack: 8,
-        counterAttack: 80}
+        HP: 100,
+        attack: 4,
+        counterAttack: 20 }
     );
 
     $("#dinosaur2").data( {
         name: "big guy",
-        HP: 400,
-        attack: 9,
-        counterAttack: 25
+        HP: 130,
+        attack: 4,
+        counterAttack: 15
     });
     
     $("#dinosaur3").data( {
         name: "lil cute one",
-        HP: 100,
-        attack: 9,
-        counterAttack: 16 
+        HP: 60,
+        attack: 4,
+        counterAttack: 10 
     });
     
     $("#dinosaur4").data( {
         name: "just doing his best",
-        HP: 300,
-        attack: 2,
-        counterAttack: 14 
+        HP: 260,
+        attack: 4,
+        counterAttack: 30 
     });
 
     var pickFighter = true;
@@ -33,15 +42,14 @@ $(document).ready(function(){
     var gameStarted = false;
     var currentFighter;
     var currentEnemy;
+    var numDefeated = 0;
 
     
-//     function gameSetup () {
-//         if (!gameStarted){
-//             $("#game-play").hide();
-//             $("#attack").hide();
-//     }
 
-// gameSetup();
+        if (!gameStarted){
+            $("#game-play").hide();
+            $("#attack").hide();}
+
 
     function pickDinoFighter () {
         $(".dino").on("click", function () {
@@ -55,6 +63,7 @@ $(document).ready(function(){
                 $("#fighter-AP").html("Attack Power: " + currentFighter.attack);
                 // adds green border to chosen fighter
                 $("#fighter").css("border", "2px solid green");
+                $("#your-dino").prepend($("#fighter"));
             }
         })
     }
@@ -65,6 +74,8 @@ $(document).ready(function(){
                 currentEnemy = $(this).data();
                 $(this).attr("id", "fightingAgainst");
                 $("#fightingAgainst").css("border", "2px solid blue");
+                $("#your-opponent").prepend($("#fightingAgainst"));
+                $("#fightingAgainst").removeAttr("class", "opponent");
                 $("#opponent-HP").html("HP: " + currentEnemy.HP);
                 $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
                 otherOpponents();
@@ -96,12 +107,14 @@ $(document).ready(function(){
         if (gameStarted) {
             console.log("game started");
             $("#dino-pick").hide();
+            $("#dino-container").hide();
             $("#game-play").show();
             $("#attack").show();
-            $("#dinos-left").append($(".opponent:not(#fightingAgainst, .defeated)"));
+            $("#dinos-left").append($(".opponent"));
         }
     });
 
+    
     // function decreaseHP
     $("#attack").on("click", function () {
         if (gameStarted && currentEnemy.HP > 0 && currentFighter.HP > 0) {
@@ -120,29 +133,36 @@ $(document).ready(function(){
         }
         if (currentEnemy.HP <= 0) {
             // mark defeated dino as 'defeated'
-            console.log("Choose another opponent:");
+            $("#opponent-HP").html("HP: 0");
+                $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
             pickEnemy = true;
             whenDefeated();
+            selectNext();
         }
         if (currentFighter.HP <= 0) {
             console.log("Game over");
         }
     });
 
-    // $(".defeated").removeAttr("class", "opponent");
-    // $("#defeated-dinos").append($(".defeated"));
-
-function whenDefeated () {
-    $("#fightingAgainst").removeAttr("class", "opponent");
-    $("#fightingAgainst").removeAttr("id", "fightingAgainst").addClass("defeated");
-    // $(".defeated").removeAttr("class", "opponent");
-    $("#defeated-dinos").append($(".defeated"));
+function selectNext () {
+    if (numDefeated === 1) {
+        $("#dino-pick").show();
+        $("#dino-pick").text("Choose your NEXT opponent:");
+    }
+    if (numDefeated === 2) {
+        $("#dino-pick").show();
+        $("#dino-pick").text("Choose your LAST opponent:");
+    }
+    
 }
 
-
-// // when fighter + opponent have been selected, move remaining two dino pictures into #dinos-left
-//     // when fighter is selected --> add #selected #fighter
-//     // when opponent is selected --> add #selected #fighter
-// // when picking dinosaurs, hide attack button
-// // 
+function whenDefeated () {
+    $("#fightingAgainst").removeAttr("class", "dino");
+    $("#fightingAgainst").removeAttr("class", "opponent");
+    
+    $("#fightingAgainst").removeAttr("id", "fightingAgainst").addClass("defeated");
+    $(".defeated").css("border", "none");
+    $("#defeated-dinos").append($(".defeated"));
+    numDefeated++;
+}
 })
