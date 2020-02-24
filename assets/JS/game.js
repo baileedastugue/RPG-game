@@ -7,7 +7,7 @@
 // add styles
 // add animation + sound
 
-$(document).ready(function(){
+
     // create dinosaur variables, assign this data to images
     $("#dinosaur1").data( {
         name: "da dino",
@@ -40,7 +40,9 @@ $(document).ready(function(){
     var pickFighter = true;
     var pickEnemy = false;
     var gameStarted = false;
+    var currentFighterData;
     var currentFighter;
+    var currentEnemyData;
     var currentEnemy;
     var numDefeated = 0;
 
@@ -54,31 +56,44 @@ $(document).ready(function(){
     function pickDinoFighter () {
         $(".dino").on("click", function () {
             if (pickFighter) {
-                currentFighter = $(this).data();
+                currentFighterData = $(this).data();
+                currentFighter = $(this);
                 // assigns the chosen dino the role of 'fighter'
-                $(this).attr("id", "fighter");
+                currentFighter.attr("id", "fighter");
                 
                 // updates stats data on screen
-                $("#fighter-HP").html("HP: " + currentFighter.HP);
-                $("#fighter-AP").html("Attack Power: " + currentFighter.attack);
+                $("#fighter-HP").html("HP: " + currentFighterData.HP);
+                $("#fighter-AP").html("Attack Power: " + currentFighterData.attack);
                 // adds green border to chosen fighter
                 $("#fighter").css("border", "2px solid green");
                 $("#your-dino").prepend($("#fighter"));
+                $("#vs").show();
             }
         })
     }
 
+
     function pickCurrentOpponent () {
         $(".dino").on("click", function () {
             if (pickEnemy) {
-                currentEnemy = $(this).data();
+                currentChoice = $(this).data();
+                // if (currentChoice.HP > 0 ) {
+                currentEnemyData = $(this).data();
+                currentEnemy = $(this);
+                console.log(currentEnemy);
                 $(this).attr("id", "fightingAgainst");
                 $("#fightingAgainst").css("border", "2px solid blue");
                 $("#your-opponent").prepend($("#fightingAgainst"));
                 $("#fightingAgainst").removeAttr("class", "opponent");
-                $("#opponent-HP").html("HP: " + currentEnemy.HP);
-                $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
+                
+                $("#opponent-HP").html("HP: " + currentEnemyData.HP);
+                $("#opponent-AP").html("Counter-Attack Power: " + currentEnemyData.counterAttack);
                 otherOpponents();
+                // }
+                // else {
+                //     gameStarted = false;
+                //     pickCurrentOpponent();
+                // }
             }
 
         })
@@ -101,8 +116,10 @@ $(document).ready(function(){
             $("#dino-pick").text("Choose your opponent:");
         }
         else if (pickEnemy) {
+            $("#dino-container").show();
             pickEnemy = false;
             gameStarted = true;
+
         }
         if (gameStarted) {
             console.log("game started");
@@ -117,29 +134,29 @@ $(document).ready(function(){
     
     // function decreaseHP
     $("#attack").on("click", function () {
-        if (gameStarted && currentEnemy.HP > 0 && currentFighter.HP > 0) {
+        if (gameStarted && currentEnemyData.HP > 0 && currentFighterData.HP > 0) {
             // decrease opponent's HP
-            currentEnemy.HP = currentEnemy.HP-currentFighter.attack;
+            currentEnemyData.HP = currentEnemyData.HP-currentFighterData.attack;
             // decrease fighter's HP
-            currentFighter.HP = currentFighter.HP-currentEnemy.counterAttack;
+            currentFighterData.HP = currentFighterData.HP-currentEnemyData.counterAttack;
             // increase fighter's attack power
-            currentFighter.attack = currentFighter.attack *2;
+            currentFighterData.attack = currentFighterData.attack *2;
 
             // update HP and attack + counter-attack power on page
-            $("#opponent-HP").html("HP: " + currentEnemy.HP);
-            $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
-            $("#fighter-HP").html("HP: " + currentFighter.HP);
-            $("#fighter-AP").html("Attack Power: " + currentFighter.attack);
+            $("#opponent-HP").html("HP: " + currentEnemyData.HP);
+            $("#opponent-AP").html("Counter-Attack Power: " + currentEnemyData.counterAttack);
+            $("#fighter-HP").html("HP: " + currentFighterData.HP);
+            $("#fighter-AP").html("Attack Power: " + currentFighterData.attack);
         }
-        if (currentEnemy.HP <= 0) {
+        if (currentEnemyData.HP <= 0) {
             // mark defeated dino as 'defeated'
             $("#opponent-HP").html("HP: 0");
-                $("#opponent-AP").html("Counter-Attack Power: " + currentEnemy.counterAttack);
+                $("#opponent-AP").html("Counter-Attack Power: " + currentEnemyData.counterAttack);
             pickEnemy = true;
             whenDefeated();
             selectNext();
         }
-        if (currentFighter.HP <= 0) {
+        if (currentFighterData.HP <= 0) {
             console.log("Game over");
         }
     });
@@ -147,22 +164,29 @@ $(document).ready(function(){
 function selectNext () {
     if (numDefeated === 1) {
         $("#dino-pick").show();
+        // $("#dino-container").show();
         $("#dino-pick").text("Choose your NEXT opponent:");
     }
     if (numDefeated === 2) {
         $("#dino-pick").show();
+        // $("#dino-container").show();
         $("#dino-pick").text("Choose your LAST opponent:");
     }
     
 }
 
 function whenDefeated () {
-    $("#fightingAgainst").removeAttr("class", "dino");
-    $("#fightingAgainst").removeAttr("class", "opponent");
+    currentEnemy.removeAttr("class", "dino");
     
-    $("#fightingAgainst").removeAttr("id", "fightingAgainst").addClass("defeated");
+    currentEnemy.removeAttr("class", "opponent");
+    
+    currentEnemy.removeAttr("id", "fightingAgainst").addClass("defeated");
+    
+    currentEnemyData = "";
+    currentEnemy = "";
+    
     $(".defeated").css("border", "none");
     $("#defeated-dinos").append($(".defeated"));
+    $("#defeated-dinos").hide();
     numDefeated++;
 }
-})

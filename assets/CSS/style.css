@@ -14,3 +14,17 @@ img {
     opacity: 50%;
     border: none;
 }
+
+.holdsDinos {
+    justify-content: center;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#dino-container {
+    border: 2px solid black;
+}
+
+#vs {
+    display: none;
+}

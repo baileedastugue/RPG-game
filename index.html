@@ -18,41 +18,53 @@
         </div>
 
         <div class="row" id="dino-container">            
-            <img src="assets/images/dino1.png" class="dino" id="dinosaur1"><br>
-            <img src="assets/images/dino2.png" class="dino" id="dinosaur2"><br>
-            <img src="assets/images/dino3.png" class="dino" id="dinosaur3"><br>
-            <img src="assets/images/dino4.png" class="dino" id="dinosaur4"><br>
+            <img src="assets/images/dino1.png" class="dino caption" id="dinosaur1"><br>
+            <img src="assets/images/dino2.png" class="dino caption" id="dinosaur2"><br>
+            <img src="assets/images/dino3.png" class="dino caption" id="dinosaur3"><br>
+            <img src="assets/images/dino4.png" class="dino caption" id="dinosaur4"><br>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-6" id="your-dino">
-                <div id="current-fighter">
-                    Your Dino Stats:<br>
-                        <span id="fighter-HP">HP:</span><br>
-                        <span id="fighter-AP">Attack Power:</span>
-                </div>
+            <div class="col-5 holdsDinos" id="your-dino">
             </div>
-            <div class="col-6" id="your-opponent">
-                <div id="current-opponent">
-                    Enemy Dino Stats:<br>
-                        <span id="opponent-HP">HP:</span><br>
-                        <span id="opponent-AP">Counter-Attack Power:</span>
-                </div>
+            <div class="col-2">
+                <br><br>
+                <h1 id="vs">VS</h1>
+            </div>
+            <div class="col-5" id="your-opponent">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 holdsDinos" id="current-fighter">
+                Your Dino Stats:<br>
+                    <span id="fighter-HP">HP:</span><br>
+                    <span id="fighter-AP">Attack Power:</span>
+            </div>
+            <div class="col-2" id="game-commentary">
+                
+            </div>
+            <div class="col-5" id="current-opponent">
+                Enemy Dino Stats:<br>
+                    <span id="opponent-HP">HP:</span><br>
+                    <span id="opponent-AP">Counter-Attack Power:</span>
             </div>
         </div>
 
         <div class="row">
             <button type="button" class="btn btn-warning" id="attack">attack!</button>
         </div>
+        <div class="row">
+            <a class="btn btn-primary" id="restart" href="https://baileedastugue.github.io/RPG-game/">restart</a button>
+        </div>
     </div>
 
     <div class="container" id="game-play">
         <div class="row">
-            <div id="defeated-dinos">Defeated dinos:</div><br>
+            <div id="dinos-left">Dinos left to fight:</div>   
         </div>
-        <div class="row">
-            <div id="dinos-left">Dinos left to fight:</div>                
+        <div class="row">             
+            <div id="defeated-dinos">Defeated dinos:</div><br>
         </div>
     </div>
     
