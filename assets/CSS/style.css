@@ -15,16 +15,26 @@ img {
     border: none;
 }
 
-.holdsDinos {
-    justify-content: center;
-    display: inline-block;
-    vertical-align: middle;
-}
 
 #dino-container {
     border: 2px solid black;
+    justify-content: center;
+    /* display: inline-block; */
+    vertical-align: middle;
 }
 
 #vs {
     display: none;
+}
+
+#current-opponent {
+    justify-content: right;
+    text-align: right;
+}
+
+#current-opponent img {
+    justify-content: right;
+    text-align: right;
+    float: right;
+    margin: 0;
 }

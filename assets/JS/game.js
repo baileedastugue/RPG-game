@@ -10,28 +10,28 @@
 
     // create dinosaur variables, assign this data to images
     $("#dinosaur1").data( {
-        name: "da dino",
+        name: "Brachiosaurus",
         HP: 100,
         attack: 4,
         counterAttack: 20 }
     );
 
     $("#dinosaur2").data( {
-        name: "big guy",
+        name: "Velociraptor",
         HP: 130,
         attack: 4,
         counterAttack: 15
     });
     
     $("#dinosaur3").data( {
-        name: "lil cute one",
+        name: "Triceratops",
         HP: 60,
         attack: 4,
         counterAttack: 10 
     });
     
     $("#dinosaur4").data( {
-        name: "just doing his best",
+        name: "Tyrannosaurus",
         HP: 260,
         attack: 4,
         counterAttack: 30 
@@ -50,7 +50,7 @@
 
         if (!gameStarted){
             $("#game-play").hide();
-            $("#attack").hide();}
+            $("#buttons").hide();}
 
 
     function pickDinoFighter () {
@@ -117,6 +117,7 @@
         }
         else if (pickEnemy) {
             $("#dino-container").show();
+            $("#game-commentary").html("");
             pickEnemy = false;
             gameStarted = true;
 
@@ -126,7 +127,7 @@
             $("#dino-pick").hide();
             $("#dino-container").hide();
             $("#game-play").show();
-            $("#attack").show();
+            $("#buttons").show();
             $("#dinos-left").append($(".opponent"));
         }
     });
@@ -147,6 +148,9 @@
             $("#opponent-AP").html("Counter-Attack Power: " + currentEnemyData.counterAttack);
             $("#fighter-HP").html("HP: " + currentFighterData.HP);
             $("#fighter-AP").html("Attack Power: " + currentFighterData.attack);
+
+            $("#game-commentary").html(currentFighterData.name + " attacked with " + currentFighterData.attack + " points! <br>" +
+                                        currentEnemyData.name + " caused " + currentEnemyData.counterAttack + " damage!" )
         }
         if (currentEnemyData.HP <= 0) {
             // mark defeated dino as 'defeated'
@@ -157,7 +161,8 @@
             selectNext();
         }
         if (currentFighterData.HP <= 0) {
-            console.log("Game over");
+            $("#game-commentary").html(currentFighterData.name + " was defeated by " + currentEnemyData.name + 
+            "!<Br>Press 'restart' to try again");
         }
     });
 
@@ -172,18 +177,22 @@ function selectNext () {
         // $("#dino-container").show();
         $("#dino-pick").text("Choose your LAST opponent:");
     }
+    if (numDefeated === 3) {
+        $("#game-commentary").html(currentFighterData.name + " beat all other dinosaurs!");
+    }
     
 }
 
 function whenDefeated () {
+    $("#game-commentary").html(currentFighterData.name + " defeated " + currentEnemyData.name + "!");
     currentEnemy.removeAttr("class", "dino");
     
     currentEnemy.removeAttr("class", "opponent");
     
     currentEnemy.removeAttr("id", "fightingAgainst").addClass("defeated");
     
-    currentEnemyData = "";
-    currentEnemy = "";
+    // currentEnemyData = "";
+    // currentEnemy = "";
     
     $(".defeated").css("border", "none");
     $("#defeated-dinos").append($(".defeated"));
