@@ -12,18 +12,23 @@
     <title>Dino Fight</title>
 </head>
 <body>
-    <div class="container" id="background">
+    <nav class="navbar">
+        <a href="https://baileedastugue.github.io/RPG-game/">
+          <img src="assets/images/logo.png" alt="" class="mx-auto">
+        </a>
+      </nav>
+    <div id="background">
         <div class="container" id="player-container">
             <div class="row">
-                <div class="col-6" id="user-fighter">
-                    <br>Your Dino Stats:<br>
+                <div class="col-6" id="user-fighter"><br>
+                        <span id="fighter-name">Your Dino</span> Stats:<br>
                         <span id="fighter-HP">HP:</span><br>
                         <progress id="fighter-health" value="100" max="500"></progress><br>
                         <span id="fighter-AP">Attack Power:</span>
                 </div>
 
-                <div class="col-6" id="current-opponent">
-                    <br>Enemy Dino Stats:<br>
+                <div class="col-6" id="current-opponent"><br>
+                        <span id="opponent-name">Enemy Dino</span> Stats:<br>
                         <span id="opponent-HP">HP:</span><br>
                         <progress id="opponent-health" value="100" max="500"></progress><br>
                         <span id="opponent-CA">Counter-Attack Power:</span>

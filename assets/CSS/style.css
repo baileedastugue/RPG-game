@@ -1,16 +1,28 @@
-img {
-    max-width: 200px;
-    max-height: 200px;
-    /* margin: 10px; */
-    /* padding: 5px; */
+#background {
+    background-image: url("assets/images/logo.jpeg");
+    /* background-color: black; */
+    height: 100%;
+    width: 100%;
 }
 
+.navbar {
+    background-color: black;
+}
+
+.navbar img {
+    width: 100px;
+}
+
+.dino {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 10px;
+    padding: 5px;
+}
 
 * {
-    box-
-    margin: 0px;
-    background-image: url("assets/images/background.jpeg");
-    /* background-color: black; */
+    box-sizing: border-box;
+    margin: 10px;
 }
 
 .defeated {
@@ -20,39 +32,29 @@ img {
 
 
 #dino-container {
-    /* border: 2px solid black; */
     justify-content: center;
-    /* display: inline-block; */
-    vertical-align: bottom;
-}
-
-#vs {
-    display: none;
 }
 
 #current-opponent {
-    justify-content: right;
+    
     text-align: right;
 }
 
 #current-opponent img {
     justify-content: right;
     text-align: right;
-    float: right;
-    margin: 0;
+    max-height: 300px;   
 }
 
 #user-fighter {
-    justify-content: left;
     text-align: left;
 }
 
 #user-fighter img {
     justify-content: left;
     text-align: left;
-    float: left;
-    margin: 0;
-}
+    max-height: 300px;  
+} 
 
 
 

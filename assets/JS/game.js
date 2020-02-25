@@ -100,7 +100,7 @@
                     $(chosenOpponent.cardID).addClass("remove-text");
                     opponentHealth.value = chosenOpponent.healthPoints;
                     opponentHealth.max = chosenOpponent.healthPoints;
-                    console.log(opponentHealth.max);
+                    $("#opponent-name").html(chosenOpponent.name);
                     opponentHP = chosenOpponent.healthPoints;
                     opponentCA = chosenOpponent.counterAttackPoints;
                 }
@@ -127,7 +127,7 @@
                     $(chosenFighter.cardID).addClass("remove-text");
                     fighterHealth.value = chosenFighter.healthPoints;
                     fighterHealth.max = chosenFighter.healthPoints;
-                    console.log(fighterHealth.max);
+                    $("#fighter-name").html(chosenFighter.name);
                     fighterHP = chosenFighter.healthPoints;
                     fighterAt = chosenFighter.attackPoints;
                 }
