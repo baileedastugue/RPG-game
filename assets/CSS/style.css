@@ -1,12 +1,11 @@
 img {
-    max-width: 200px;
+    /* max-width: 150px; */
     max-height: 400px;
     margin: 10px;
     padding: 5px;
 }
 
 * {
-    background-color:white;
     margin: 0px;
 }
 
@@ -17,10 +16,10 @@ img {
 
 
 #dino-container {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     justify-content: center;
     /* display: inline-block; */
-    vertical-align: middle;
+    vertical-align: bottom;
 }
 
 #vs {
