@@ -62,6 +62,7 @@
     var opponentCA = "";
     var $this;
     var userChoice;
+    $("#restart").hide();
 
 
     function displayPoints () {
@@ -144,10 +145,9 @@
             fighterHP = fighterHP - opponentCA;
             // increase fighter's attack power
             fighterAt = fighterAt * 2;
-
         }
 
-        else if (opponentHP <= 0 && fighterHP > 0) {
+        if (opponentHP <= 0 && fighterHP > 0) {
             chosenOpponent.isCurrentOpponent = false;
             chosenOpponent.defeated = true;
             $("#defeated-container").append($(chosenOpponent.cardID));
@@ -157,11 +157,17 @@
             opponentChosen = false;
             chooseOpponent();
         }
+        
 
-        else {
+        else if (fighterHP <= 0) {
+            displayPoints();
             gameReset = true;
-            gameOver();
+            $("#restart").show();
+            $("#attack").hide();
         }
+
         displayPoints();
+        gameOver();
     })
 
+    
