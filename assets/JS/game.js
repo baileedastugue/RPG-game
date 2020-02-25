@@ -64,6 +64,9 @@
     var userChoice;
     var opponentNumber;
     var numDefeated = 0;
+
+    let opponentHealth = document.getElementById("opponent-health");
+    let fighterHealth = document.getElementById("fighter-health")
     
     $("#player-container").hide();
     $("#defeated-container").hide();
@@ -95,6 +98,9 @@
                     $("#current-opponent").prepend("<img src=" + imageHolder[i] + " width='400px'  id='opponent'>");
                     $(chosenOpponent.cardID).removeClass("col-3");
                     $(chosenOpponent.cardID).addClass("remove-text");
+                    opponentHealth.value = chosenOpponent.healthPoints;
+                    opponentHealth.max = chosenOpponent.healthPoints;
+                    console.log(opponentHealth.max);
                     opponentHP = chosenOpponent.healthPoints;
                     opponentCA = chosenOpponent.counterAttackPoints;
                 }
@@ -104,6 +110,7 @@
             $("#user-prompt").hide();
         }
     }
+    
 
     var imageHolder = ["assets/images/dino1.png", "assets/images/dino2.png", "assets/images/dino3.png", "assets/images/dino4.png"]
 
@@ -118,6 +125,9 @@
                     $("#user-fighter").prepend("<img src=" + imageHolder[i] + " width='400px'>");
                     $(chosenFighter.cardID).removeClass("col-3");
                     $(chosenFighter.cardID).addClass("remove-text");
+                    fighterHealth.value = chosenFighter.healthPoints;
+                    fighterHealth.max = chosenFighter.healthPoints;
+                    console.log(fighterHealth.max);
                     fighterHP = chosenFighter.healthPoints;
                     fighterAt = chosenFighter.attackPoints;
                 }
@@ -159,21 +169,28 @@
        opponentHP = opponentHP - fighterAt;
        // increase fighter's attack power
        fighterAt = fighterAt * 2;
+       opponentHealth.value -= fighterAt;
+
    }
 
    function opponentAttacks () {
        if (opponentHP > 0) {
             // decrease fighter's HP
             fighterHP = fighterHP - opponentCA;
+            
+            fighterHealth.value -= opponentCA;
        }
    }
 
     $("#attack").on("click", function () {
         
-        if (opponentHP > 0 && fighterHP > 0) {
+        if (fighterHP > 0) {
            fighterAttacks();
            displayPoints();
-           opponentAttacks();
+        }
+        if (opponentHP > 0) {
+            opponentAttacks();
+            displayPoints();
         }
 
         if (opponentHP <= 0 && fighterHP > 0 && !chosenOpponent.defeated && opponentChosen) {
