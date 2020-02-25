@@ -133,34 +133,35 @@
         else {
             $("#dino-container").show();
         }
-
-        $("#attack").on("click", function () {
-            if (opponentHP > 0 && fighterHP > 0) {
-                // decrease opponent's HP
-                opponentHP = opponentHP - fighterAt;
-                // decrease fighter's HP
-                fighterHP = fighterHP - opponentCA;
-                // increase fighter's attack power
-                console.log(parseInt(fighterAt) * 2);
-                displayPoints();
-            }
-
-            else if (opponentHP <= 0 && fighterHP > 0) {
-                chosenOpponent.isCurrentOpponent = false;
-                chosenOpponent.defeated = true;
-                $("#defeated-container").append($(chosenOpponent.cardID));
-                chosenOpponent = "";
-                opponentHP = 0;
-                opponentCA = "";
-                opponentChosen = false;
-                displayPoints();
-                chooseOpponent();
-            }
-
-            else {
-                gameReset = true;
-                gameOver();
-            }
-        })
-
     })
+
+
+    $("#attack").on("click", function () {
+        if (opponentHP > 0 && fighterHP > 0) {
+            // decrease opponent's HP
+            opponentHP = opponentHP - fighterAt;
+            // decrease fighter's HP
+            fighterHP = fighterHP - opponentCA;
+            // increase fighter's attack power
+            fighterAt = fighterAt * 2;
+
+        }
+
+        else if (opponentHP <= 0 && fighterHP > 0) {
+            chosenOpponent.isCurrentOpponent = false;
+            chosenOpponent.defeated = true;
+            $("#defeated-container").append($(chosenOpponent.cardID));
+            chosenOpponent = "";
+            opponentHP = 0;
+            opponentCA = "";
+            opponentChosen = false;
+            chooseOpponent();
+        }
+
+        else {
+            gameReset = true;
+            gameOver();
+        }
+        displayPoints();
+    })
+
