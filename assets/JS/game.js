@@ -62,7 +62,8 @@
     var opponentCA = "";
     var $this;
     var userChoice;
-    $("#restart").hide();
+    var opponentNumber;
+    $("#game-play").hide();
 
 
     function displayPoints () {
@@ -85,7 +86,10 @@
                     chosenOpponent = characterArray[i];
                     chosenOpponent.isCurrentOpponent = true;
                     opponentChosen = true;
-                    $("#current-opponent").prepend($(chosenOpponent.cardID));
+                    opponentNumber = i;
+                    $("#current-opponent").prepend("<img src=" + imageHolder[i] + " width='400px'  id='opponent'>");
+                    $(chosenOpponent.cardID).removeClass("col-3");
+                    $(chosenOpponent.cardID).addClass("remove-text");
                     opponentHP = chosenOpponent.healthPoints;
                     opponentCA = chosenOpponent.counterAttackPoints;
                 }
@@ -96,6 +100,8 @@
         }
     }
 
+    var imageHolder = ["assets/images/dino1.png", "assets/images/dino2.png", "assets/images/dino3.png", "assets/images/dino4.png"]
+
     // function for choosing user's fighting dino - will only be called when game is reset
     function chooseFightingDino () {
         if (!fighterChosen) {
@@ -104,13 +110,16 @@
                     chosenFighter = characterArray[i];
                     chosenFighter.isFighter = true;
                     fighterChosen = true;
-                    $("#user-fighter").prepend($(chosenFighter.cardID));
+                    $("#user-fighter").prepend("<img src=" + imageHolder[i] + " width='400px'>");
+                    $(chosenFighter.cardID).removeClass("col-3");
+                    $(chosenFighter.cardID).addClass("remove-text");
                     fighterHP = chosenFighter.healthPoints;
                     fighterAt = chosenFighter.attackPoints;
                 }
             }    
         }
     }
+
 
     function gameOver () {
         if (gameReset) {
@@ -130,6 +139,8 @@
         displayPoints();
         if (fighterChosen && opponentChosen) {
             $("#dino-container").hide();
+            $("#game-play").show();
+            $("#restart").hide();
         }
         else {
             $("#dino-container").show();
@@ -147,10 +158,11 @@
             fighterAt = fighterAt * 2;
         }
 
-        if (opponentHP <= 0 && fighterHP > 0) {
+        if (opponentHP <= 0 && fighterHP > 0 && !chosenOpponent.defeated && opponentChosen) {
+            $("#opponent").remove();
             chosenOpponent.isCurrentOpponent = false;
             chosenOpponent.defeated = true;
-            $("#defeated-container").append($(chosenOpponent.cardID));
+            $("#defeated-container").append("<img src=" + imageHolder[opponentNumber] + " width='400px'>");
             chosenOpponent = "";
             opponentHP = 0;
             opponentCA = "";

@@ -1,8 +1,8 @@
 img {
-    /* max-width: 150px; */
-    max-height: 400px;
-    margin: 10px;
-    padding: 5px;
+    max-width: 200px;
+    max-height: 200px;
+    /* margin: 10px; */
+    /* padding: 5px; */
 }
 
 * {
@@ -48,4 +48,30 @@ img {
     text-align: left;
     float: left;
     margin: 0;
+}
+
+/* .card-body {
+    height: 100px;
+} */
+
+.card-img-top {
+    /* background-color: b; */
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+p.card-text {
+    /* background-color: grey; */
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.card-body {
+    margin: 0px;
+    padding: 0px;
+    /* height: 400px; */
+}
+
+.remove-text{
+    display: none;
 }
