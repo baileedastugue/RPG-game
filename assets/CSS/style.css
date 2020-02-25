@@ -38,3 +38,15 @@ img {
     float: right;
     margin: 0;
 }
+
+#user-fighter {
+    justify-content: left;
+    text-align: left;
+}
+
+#user-fighter img {
+    justify-content: left;
+    text-align: left;
+    float: left;
+    margin: 0;
+}

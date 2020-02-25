@@ -6,63 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/base.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/base.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Dino Fight</title>
 </head>
 <body>
     <div class="container">
         <div class="row">          
-            <div id="dino-pick">Choose your fighter:</div><br>
+            <div id="user-prompt">Choose your fighter:</div><br>
         </div>
 
-        <div class="row" id="dino-container">            
-            <img src="assets/images/dino1.png" class="dino caption" id="dinosaur1"><br>
-            <img src="assets/images/dino2.png" class="dino caption" id="dinosaur2"><br>
-            <img src="assets/images/dino3.png" class="dino caption" id="dinosaur3"><br>
-            <img src="assets/images/dino4.png" class="dino caption" id="dinosaur4"><br>
+        <div class="row" id="dino-container">  
+            <div class="card" >
+                <img src="assets/images/dino1.png" class="card-img-top dino" id="dinosaur1" value="dino1"><br>
+                <div class="card-body"><p class="card-text"></p></div>
+            </div>          
+            <div class="card">
+                <img src="assets/images/dino2.png" class="card-img-top dino" id="dinosaur2" value="dino2"><br>
+                <div class="card-body"><p class="card-text"></p></div>
+            </div>
+            <div class="card">
+                <img src="assets/images/dino3.png" class="card-img-top dino" id="dinosaur3" value="dino3"><br>
+                <div class="card-body"><p class="card-text"></p></div>
+            </div>
+            <div class="card">
+                <img src="assets/images/dino4.png" class="card-img-top dino" id="dinosaur4" value="dino4"><br>
+                <div class="card-body"><p class="card-text"></p></div>
+            </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-4 holdsDinos" id="your-dino">
-            </div>
-            <div class="col-5">
-                <br><br>
-                <h1 id="vs">VS</h1>
-            </div>
-            <div class="col-3" id="your-opponent">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 holdsDinos" id="current-fighter">
-                Your Dino Stats:<br>
+            <div class="col-5" id="user-fighter">
+                <br>Your Dino Stats:<br>
                     <span id="fighter-HP">HP:</span><br>
                     <span id="fighter-AP">Attack Power:</span>
             </div>
-            <div class="col-4" id="game-commentary">
-                
+
+            <div class="col-2" id="game-commentary">    
             </div>
-            <div class="col-4" id="current-opponent">
-                Enemy Dino Stats:<br>
+
+            <div class="col-5" id="current-opponent">
+                <br>Enemy Dino Stats:<br>
                     <span id="opponent-HP">HP:</span><br>
-                    <span id="opponent-AP">Counter-Attack Power:</span>
+                    <span id="opponent-CA">Counter-Attack Power:</span>
             </div>
         </div>
 
         <div class="row" id="buttons">
             <button type="button" class="btn btn-warning" id="attack">attack!</button>
-            <a class="btn btn-primary" id="restart" href="https://baileedastugue.github.io/RPG-game/">restart</a button>
+            <a class="btn btn-primary" id="restart">restart</a button>
         </div>
     </div>
 
     <div class="container" id="game-play">
-        <div class="row">
+        <!-- <div class="row">
             <div id="dinos-left">Dinos left to fight:</div>   
-        </div>
+        </div> -->
         <div class="row">             
-            <div id="defeated-dinos">Defeated dinos:</div><br>
+            <div id="defeated-container">Defeated dinos:</div><br>
         </div>
     </div>
     
