@@ -2,7 +2,7 @@
         name: "Brachiosaurus",
         healthPoints: 100,
         attackPoints: 4,
-        counterAttackPoints: 20, 
+        counterAttackPoints: 15, 
         isFighter: false,
         isCurrentOpponent: false,
         cardID: "#dinosaur1",
@@ -14,7 +14,7 @@
         name: "Velociraptor",
         healthPoints: 130,
         attackPoints: 4,
-        counterAttackPoints: 15,
+        counterAttackPoints: 20,
         isFighter: false,
         isCurrentOpponent: false,
         cardID: "#dinosaur2",
@@ -24,7 +24,7 @@
     
     var dino3 = {
         name: "Triceratops",
-        healthPoints: 60,
+        healthPoints: 100,
         attackPoints: 4,
         counterAttackPoints: 10, 
         isFighter: false,
@@ -36,9 +36,9 @@
     
     var dino4 = {
         name: "Tyrannosaurus",
-        healthPoints: 260,
+        healthPoints: 250,
         attackPoints: 4,
-        counterAttackPoints: 30,
+        counterAttackPoints: 90,
         isFighter: false,
         isCurrentOpponent: false,
         cardID: "#dinosaur4",
@@ -63,8 +63,12 @@
     var $this;
     var userChoice;
     var opponentNumber;
-    $("#game-play").hide();
-
+    var numDefeated = 0;
+    
+    $("#player-container").hide();
+    $("#defeated-container").hide();
+    $("#restart").hide();
+    $("#attack").hide();
 
     function displayPoints () {
         $("#opponent-HP").html("HP: " + opponentHP);
@@ -77,6 +81,7 @@
     function chooseOpponent() {
         if (!opponentChosen) {
             $("#dino-container").show();
+            $("#attack").hide();
             $("#user-prompt").show();
             $("#user-prompt").html("Choose your next opponent:");
              // when the user chooses their dinosaurs
@@ -123,7 +128,7 @@
 
     function gameOver () {
         if (gameReset) {
-        alert("Game is over - click 'restart' to try again");
+        alert(chosenFighter.name + " met their match - click 'restart' to try again");
         }
     }
 
@@ -139,29 +144,44 @@
         displayPoints();
         if (fighterChosen && opponentChosen) {
             $("#dino-container").hide();
-            $("#game-play").show();
             $("#restart").hide();
+            $("#player-container").show();
+            $("#attack").show();
+
         }
         else {
             $("#dino-container").show();
         }
     })
 
+   function fighterAttacks () {
+       // decrease opponent's HP
+       opponentHP = opponentHP - fighterAt;
+       // increase fighter's attack power
+       fighterAt = fighterAt * 2;
+   }
 
-    $("#attack").on("click", function () {
-        if (opponentHP > 0 && fighterHP > 0) {
-            // decrease opponent's HP
-            opponentHP = opponentHP - fighterAt;
+   function opponentAttacks () {
+       if (opponentHP > 0) {
             // decrease fighter's HP
             fighterHP = fighterHP - opponentCA;
-            // increase fighter's attack power
-            fighterAt = fighterAt * 2;
+       }
+   }
+
+    $("#attack").on("click", function () {
+        
+        if (opponentHP > 0 && fighterHP > 0) {
+           fighterAttacks();
+           displayPoints();
+           opponentAttacks();
         }
 
         if (opponentHP <= 0 && fighterHP > 0 && !chosenOpponent.defeated && opponentChosen) {
             $("#opponent").remove();
+            $("#defeated-container").show();
             chosenOpponent.isCurrentOpponent = false;
             chosenOpponent.defeated = true;
+            numDefeated++;
             $("#defeated-container").append("<img src=" + imageHolder[opponentNumber] + " width='400px'>");
             chosenOpponent = "";
             opponentHP = 0;
@@ -176,10 +196,18 @@
             gameReset = true;
             $("#restart").show();
             $("#attack").hide();
+            gameOver();
         }
 
         displayPoints();
-        gameOver();
+        if (numDefeated === 3) {
+            alert("you won!");
+            $("#dino-container").hide();
+            $("#restart").show();
+            $("#user-prompt").hide();
+        }
+        
     })
 
+    
     
