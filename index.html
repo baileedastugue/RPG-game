@@ -5,96 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/base.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/base.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
     <title>Dino Fight</title>
 </head>
 <body>
+    <div class="container" id="background">
+        <div class="container" id="player-container">
+            <div class="row">
+                <div class="col-6" id="user-fighter">
+                    <br>Your Dino Stats:<br>
+                        <span id="fighter-HP">HP:</span><br>
+                        <progress id="fighter-health" value="100" max="500"></progress><br>
+                        <span id="fighter-AP">Attack Power:</span>
+                </div>
 
-    <div class="container" id="player-container">
-        <div class="row">
-            <div class="col-6" id="user-fighter">
-                <br>Your Dino Stats:<br>
-                    <span id="fighter-HP">HP:</span><br>
-                    <progress id="fighter-health" value="100" max="500"></progress><br>
-                    <span id="fighter-AP">Attack Power:</span>
+                <div class="col-6" id="current-opponent">
+                    <br>Enemy Dino Stats:<br>
+                        <span id="opponent-HP">HP:</span><br>
+                        <progress id="opponent-health" value="100" max="500"></progress><br>
+                        <span id="opponent-CA">Counter-Attack Power:</span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">          
+                <div id="user-prompt">Choose your fighter:</div><br>
             </div>
 
-            <div class="col-6" id="current-opponent">
-                <br>Enemy Dino Stats:<br>
-                    <span id="opponent-HP">HP:</span><br>
-                    <progress id="opponent-health" value="100" max="500"></progress><br>
-                    <span id="opponent-CA">Counter-Attack Power:</span>
+            <div class="row" id="dino-container">  
+                <div class="card col-3" id="dinosaur1">
+                    <img src="assets/images/dino1.png" class="card-img-top dino" value="dino1"><br>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Genus: Brachiosaurus<br>
+                            Health Points: 100
+                            <!-- Counter-attack Points: 20  -->
+                        </p>
+                    </div>
+                </div>          
+                <div class="card col-3" id="dinosaur2">
+                    <img src="assets/images/dino2.png" class="card-img-top dino" value="dino2"><br>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Genus: Velociraptor<br>
+                            Health Points: 130
+                            <!-- Counter-attack Points: 15 -->
+                        </p>
+                    </div>
+                </div>
+                <div class="card col-3" id="dinosaur3">
+                    <img src="assets/images/dino3.png" class="card-img-top dino" value="dino3"><br>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Genus: Triceratops<br>
+                            Health Points: 60
+                            
+                            <!-- Counter-attack Points: 10 -->
+                        </p>
+                    </div>
+                </div>
+                <div class="card col-3" id="dinosaur4">
+                    <img src="assets/images/dino4.png" class="card-img-top dino" value="dino4"><br>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Genus: Tyrannosaurus <br>
+                            Health Points: 250
+                            
+                            <!-- Counter-attack Points: 30<br> -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" id="buttons">
+                <button type="button" class="btn btn-warning" id="attack">attack!</button>
+                <a class="btn btn-primary" id="restart">restart</a button>
+            </div>
+            <div class="row">
+                <div class="col-2" id="game-commentary">
+                    <br><br><br> 
+                </div>
+            </div>
+            <div class="row">             
+                <div id="defeated-container">Defeated dinos:</div><br>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">          
-            <div id="user-prompt">Choose your fighter:</div><br>
-        </div>
-
-        <div class="row" id="dino-container">  
-            <div class="card col-3" id="dinosaur1">
-                <img src="assets/images/dino1.png" class="card-img-top dino" value="dino1"><br>
-                <div class="card-body">
-                    <p class="card-text">
-                        Genus: Brachiosaurus<br>
-                        Health Points: 100
-                        <!-- Counter-attack Points: 20  -->
-                    </p>
-                </div>
-            </div>          
-            <div class="card col-3" id="dinosaur2">
-                <img src="assets/images/dino2.png" class="card-img-top dino" value="dino2"><br>
-                <div class="card-body">
-                    <p class="card-text">
-                        Genus: Velociraptor<br>
-                        Health Points: 130
-                        <!-- Counter-attack Points: 15 -->
-                    </p>
-                </div>
-            </div>
-            <div class="card col-3" id="dinosaur3">
-                <img src="assets/images/dino3.png" class="card-img-top dino" value="dino3"><br>
-                <div class="card-body">
-                    <p class="card-text">
-                        Genus: Triceratops<br>
-                        Health Points: 60
-                        
-                        <!-- Counter-attack Points: 10 -->
-                    </p>
-                </div>
-            </div>
-            <div class="card col-3" id="dinosaur4">
-                <img src="assets/images/dino4.png" class="card-img-top dino" value="dino4"><br>
-                <div class="card-body">
-                    <p class="card-text">
-                        Genus: Tyrannosaurus <br>
-                        Health Points: 250
-                        
-                        <!-- Counter-attack Points: 30<br> -->
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row" id="buttons">
-            <button type="button" class="btn btn-warning" id="attack">attack!</button>
-            <a class="btn btn-primary" id="restart">restart</a button>
-        </div>
-        <div class="row">
-            <div class="col-2" id="game-commentary">
-                <br><br><br> 
-            </div>
-        </div>
-        <div class="row">             
-            <div id="defeated-container">Defeated dinos:</div><br>
-        </div>
-    </div>
-    
 </body>
 <script src="assets/JS/game.js"></script>
 </html>

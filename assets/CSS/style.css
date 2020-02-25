@@ -5,8 +5,12 @@ img {
     /* padding: 5px; */
 }
 
+
 * {
+    box-
     margin: 0px;
+    background-image: url("assets/images/background.jpeg");
+    /* background-color: black; */
 }
 
 .defeated {
@@ -50,18 +54,14 @@ img {
     margin: 0;
 }
 
-/* .card-body {
-    height: 100px;
-} */
+
 
 .card-img-top {
-    /* background-color: b; */
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
 
 p.card-text {
-    /* background-color: grey; */
     margin-top: 0px;
     padding-top: 0px;
 }
