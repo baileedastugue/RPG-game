@@ -30,6 +30,9 @@
     border: none;
 }
 
+#buttons {
+    justify-content: center;
+}
 
 #dino-container {
     justify-content: center;

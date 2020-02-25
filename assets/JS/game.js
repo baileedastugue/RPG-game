@@ -199,7 +199,7 @@
             chosenOpponent.isCurrentOpponent = false;
             chosenOpponent.defeated = true;
             numDefeated++;
-            $("#defeated-container").append("<img src=" + imageHolder[opponentNumber] + " width='400px'>");
+            $("#defeated-container").append("<img src=" + imageHolder[opponentNumber] + " height='200px' class='defeated'>" );
             chosenOpponent = "";
             opponentHP = 0;
             opponentCA = "";
