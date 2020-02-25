@@ -36,6 +36,11 @@
 
 #dino-container {
     justify-content: center;
+    margin: 10px;
+}
+
+.current-dino {
+    margin: 50px;
 }
 
 #current-opponent {

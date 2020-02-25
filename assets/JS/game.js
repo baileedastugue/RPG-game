@@ -12,8 +12,8 @@
 
     var dino2 = {
         name: "Velociraptor",
-        healthPoints: 130,
-        attackPoints: 4,
+        healthPoints: 115,
+        attackPoints: 2,
         counterAttackPoints: 20,
         isFighter: false,
         isCurrentOpponent: false,
@@ -24,7 +24,7 @@
     
     var dino3 = {
         name: "Triceratops",
-        healthPoints: 100,
+        healthPoints: 90,
         attackPoints: 4,
         counterAttackPoints: 10, 
         isFighter: false,
@@ -36,8 +36,8 @@
     
     var dino4 = {
         name: "Tyrannosaurus",
-        healthPoints: 250,
-        attackPoints: 4,
+        healthPoints: 120,
+        attackPoints: 1,
         counterAttackPoints: 90,
         isFighter: false,
         isCurrentOpponent: false,
@@ -95,7 +95,7 @@
                     chosenOpponent.isCurrentOpponent = true;
                     opponentChosen = true;
                     opponentNumber = i;
-                    $("#current-opponent").prepend("<img src=" + imageHolder[i] + " width='400px'  id='opponent'>");
+                    $("#current-opponent").prepend("<img src=" + imageHolder[i] + " width='400px'  id='opponent' class='current-dino'>");
                     $(chosenOpponent.cardID).removeClass("col-3");
                     $(chosenOpponent.cardID).addClass("remove-text");
                     opponentHealth.value = chosenOpponent.healthPoints;
@@ -122,7 +122,7 @@
                     chosenFighter = characterArray[i];
                     chosenFighter.isFighter = true;
                     fighterChosen = true;
-                    $("#user-fighter").prepend("<img src=" + imageHolder[i] + " width='400px'>");
+                    $("#user-fighter").prepend("<img src=" + imageHolder[i] + " width='400px' class='current-dino'>");
                     $(chosenFighter.cardID).removeClass("col-3");
                     $(chosenFighter.cardID).addClass("remove-text");
                     fighterHealth.value = chosenFighter.healthPoints;
@@ -157,7 +157,8 @@
             $("#restart").hide();
             $("#player-container").show();
             $("#attack").show();
-
+            $("#game-commentary").html("You've chosen " + chosenFighter.name + " to fight against "
+                    + chosenOpponent.name + "! Let's see if you can take him")
         }
         else {
             $("#dino-container").show();
@@ -182,17 +183,32 @@
        }
    }
 
+   function updateCommentary () {
+       if (fighterHP > 0 && opponentHP > 0) {
+            $("#game-commentary").html("Your " + chosenFighter.name + " attacked " + chosenOpponent.name + " for " + fighterAt + " damage! <br>"
+                        + chosenOpponent.name + " hit back with " + opponentCA + " damage");
+       }
+       if (numDefeated > 0) {
+           $("#game-commentary").html(chosenFighter.name + " took down his opponent!");
+       }
+       if (numDefeated === 3) {
+           $("#game-commentary").html(chosenFighter.name + " is the supreme dino champ!")
+       }
+   }
+
     $("#attack").on("click", function () {
         
         if (fighterHP > 0) {
            fighterAttacks();
            displayPoints();
+           updateCommentary();
         }
         if (opponentHP > 0) {
             opponentAttacks();
             displayPoints();
+            updateCommentary();
         }
-
+       
         if (opponentHP <= 0 && fighterHP > 0 && !chosenOpponent.defeated && opponentChosen) {
             $("#opponent").remove();
             $("#defeated-container").show();
@@ -205,6 +221,7 @@
             opponentCA = "";
             opponentChosen = false;
             chooseOpponent();
+            updateCommentary(); 
         }
         
 
