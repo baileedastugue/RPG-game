@@ -75,3 +75,8 @@ p.card-text {
 .remove-text{
     display: none;
 }
+
+#opponent {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
