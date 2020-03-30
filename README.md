@@ -1,5 +1,4 @@
 # RPG-game
-Jurassic Park RPG game using JQuery
 
 [Deployed Page](https://baileedastugue.github.io/RPG-game/)
 
