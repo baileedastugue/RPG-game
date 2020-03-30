@@ -1,8 +1,6 @@
 # RPG-game
 Jurassic Park RPG game using JQuery
 
-# GiphyApp
-
 [Deployed Page](https://baileedastugue.github.io/RPG-game/)
 
 *Goal of this application:*
